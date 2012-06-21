@@ -68,7 +68,7 @@ struct clkctl_acpu_speed {
 
 /* core sources */
 #define SRC_RAW		0 /* clock from SPSS_CLK_CNTL */
-#define SRC_SCPLL	1 /* output of scpll 128-998 MHZ */
+#define SRC_SCPLL	1 /* output of scpll 128-1228 MHZ */
 #define SRC_AXI		2 /* 128 MHz */
 #define SRC_PLL1	3 /* 768 MHz */
 
@@ -95,10 +95,10 @@ struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 998400, CCTL(CLK_TCXO, 1),		SRC_SCPLL, 0x1A, 0, 1300, 128000 },
 	{ 1036800, CCTL(CLK_TCXO, 1),    	SRC_SCPLL, 0x1B, 0, 1300, 128000 },
 	{ 1075200, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x1C, 0, 1300, 128000 },
-	{ 1113600, CCTL(CLK_TCXO, 1),  		SRC_SCPLL, 0x1D, 0, 1325, 128000 },
-	{ 1152000, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x1E, 0, 1350, 128000 },
-	{ 1190400, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x1F, 0, 1350, 128000 },
-	{ 1228800, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x20, 0, 1400, 128000 },
+	{ 1113600, CCTL(CLK_TCXO, 1),  		SRC_SCPLL, 0x1D, 0, 1300, 128000 },
+	{ 1152000, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x1E, 0, 1300, 128000 },
+	{ 1190400, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x1F, 0, 1300, 128000 },
+	{ 1228800, CCTL(CLK_TCXO, 1), 		SRC_SCPLL, 0x20, 0, 1350, 128000 },
 	{ 0 },
 };
 static unsigned long max_axi_rate;
@@ -241,7 +241,7 @@ static void scpll_set_freq(uint32_t lval)
 			;
 
 		/* completion bit is not reliable for SHOT switch */
-		udelay(25);
+		udelay(15);
 	}
 
 	/* write the new L val and switch mode */
